@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validasi</title>
+    <style>
+        .error {
+            border: 1px solid red;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .success-message{
+            color: green;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Pemesanan Tiket</h1>
+    <form id="tiketform">
+        <div>
+            <label for="name">Nama Pelanggaan :</label><br>
+            <input type="text" id="nama" name="nama" maxlength="30" required placeholder="Max 30 Karakter">
+            <div id="nama error" class="error-message"></div>
+        </div><br>
+        <div>
+            <label for="email">Email :</label><br>
+            <input type="text" id="email" name="email" required placeholder="Masukkan Email Anda">
+            <div id="email error" class="error-message"></div>
+        </div><br>
+        <div>
+            <label for="waktu">Jam Keberangkatan :</label><br>
+            <input type="time" id="waktu" name="waktu" required min="00.00" max="23.59">
+            <div id="waktu error" class="error-message"></div>
+        </div><br>
+        <div>
+            <label for="tujuan">Tujuan Keberangkatan :</label><br>
+            <input type="text" id="tujuan" name="tujuan" required placeholder="Masukkan Tujuan Keberangkatan Anda">
+            <div id="tujuan error" class="error-message"></div>
+        </div><br>
+        <div>
+            <label for="jumlah">Jumlah Tiket :</label><br>
+            <input type="number" id="jumlah" name="jumlah" required min="1" max="10">
+            <div id="jumlah error" class="error-message"></div>
+        </div><br>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result" class="success-message"></div>
+
+</body>
+</html>
+
+    <script>
+        document.getElementById('tiketform').addEventListener ("submit"), function(event){}
+            event.preventDefault(); 
+
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const waktu = document.getElementById('waktu').value;
+            const tujuan = document.getElementById('tujuan').value;
+            const jumlah = document.getElementById('jumlah').value;
+
+            document.getElementById('nama-error').innerText = '';
+            document.getElementById('email-error').innerText = '';
+            document.getElementById('waktu-error').innerText = '';
+            document.getElementById('tujuan-error').innerText = '';
+            document.getElementById('jumlah-error').innerText = '';
+            document.getElementById('result').innerText = '';
+
+        let valid = true;
+
+            if (nama.length === 0 || nama.length > 30) {
+                document.getElementById('nama-error').innerText = 'Nama harus diisi dan maksimal 30 karakter.';
+                document.getElementById('nama').classList.add('error');
+                valid = false;
+            } else {
+                document.getElementById('nama').classList.remove('error');
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('email-error').innerText = 'Email tidak valid.';
+                document.getElementById('email').classList.add('error');
+                valid = false;
+            } else {
+                document.getElementById('email').classList.remove('error');
+            }
+
+            if (!waktu) {
+                document.getElementById('waktu-error').innerText = 'Jam keberangkatan harus diisi.';
+                document.getElementById('waktu').classList.add('error')
+            }

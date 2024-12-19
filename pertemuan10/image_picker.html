@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menampilkan Gambar dari Dropdown</title>
+    <style>
+        #imageDisplay {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 300px;
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pilih Gambar</h1>
+    <select id="imageSelector">
+        <option value="">--Pilih Gambar--</option>
+        <option value="https://png.pngtree.com/png-vector/20240320/ourlarge/pngtree-cute-flying-bird-flat-png-image_12017462.png">Gambar 1</option>
+        <option value="https://img.freepik.com/premium-photo/watercolor-lion-cub_902338-23880.jpg">Gambar 2</option>
+        <option value="https://th.bing.com/th/id/OIP.fS1x43nNVn2gcEpJ154oQgHaGe?w=920&h=804&rs=1&pid=ImgDetMain">Gambar 3</option>
+        <option value="https://e7.pngegg.com/pngimages/864/943/png-clipart-foghorn-leghorn-rooster-cock-animals-heart.png">Gambar 4</option>
+        <option value="https://th.bing.com/th/id/OIP.vSswRaegHw_yQbhgbpMa_AHaHa?w=840&h=840&rs=1&pid=ImgDetMain">Gambar 5</option>
+        <option value="https://static.vecteezy.com/system/resources/previews/012/581/866/non_2x/cute-rabbit-cartoon-character-funny-bunny-vector.jpg">Gambar 6</option>
+    </select>
+
+    <div id="imageDisplay"></div>
+    <script>
+        const imageSelector = document.getElementById('imageSelector');
+        const imageDisplay = document.getElementById('imageDisplay');
+
+        imageSelector.addEventListener('change', function() {
+            const selectedValue = this.value;
+
+            imageDisplay.innerHTML = '';
+
+            if (selectedValue) {
+                
+                const img = document.createElement('img');
+                img.src = selectedValue;
+
+                imageDisplay.appendChild(img);
+
+                alert('Nama file gambar: ' + selectedValue);
+            }
+        });
+    </script>
+
+</body>
+</html>
